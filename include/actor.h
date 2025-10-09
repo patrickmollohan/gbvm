@@ -6,7 +6,7 @@
 #include "gbs_types.h"
 #include "math.h"
 
-#define MAX_ACTORS            21
+#define MAX_ACTORS            31
 #define MAX_ACTORS_ACTIVE     12
 
 #define PLAYER                actors[0]
