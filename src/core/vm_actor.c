@@ -50,6 +50,11 @@ typedef struct gbs_farptr_t {
     const void * DATA;
 } gbs_farptr_t;
 
+typedef struct act_bounds_t {
+    INT16 ID;
+    INT16 LEFT, RIGHT, TOP, BOTTOM;
+} act_bounds_t;
+
 static UWORD check_collision_horizontal(UWORD start_x, UWORD start_y, rect16_t *bounds, UWORD end_pos) {
     UBYTE tx1, ty1, tx2, ty2;
     ty1 = SUBPX_TO_TILE(start_y + bounds->top);
@@ -513,4 +518,16 @@ void vm_actor_set_flags(SCRIPT_CTX * THIS, INT16 idx, UBYTE flags, UBYTE mask) O
     if (mask & ACTOR_FLAG_ANIM_NOLOOP) actor->anim_noloop       = (flags & ACTOR_FLAG_ANIM_NOLOOP);
     if (mask & ACTOR_FLAG_COLLISION)   actor->collision_enabled = (flags & ACTOR_FLAG_COLLISION);
     if (mask & ACTOR_FLAG_PERSISTENT)  actor->persistent        = (flags & ACTOR_FLAG_PERSISTENT);
+}
+
+void vm_actor_get_bounds(SCRIPT_CTX * THIS, INT16 idx) OLDCALL BANKED {
+    actor_t *actor;
+
+    act_bounds_t * params = VM_REF_TO_PTR(idx);
+    actor = actors + (UBYTE)(params->ID);
+
+    params->LEFT = actor->bounds.left;
+    params->RIGHT = actor->bounds.right;
+    params->TOP = actor->bounds.top;
+    params->BOTTOM = actor->bounds.bottom;
 }
