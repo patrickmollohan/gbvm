@@ -50,5 +50,6 @@ void vm_actor_set_anim_set(SCRIPT_CTX * THIS, INT16 idx, UWORD offset) OLDCALL B
 void vm_actor_set_spritesheet_by_ref(SCRIPT_CTX * THIS, INT16 idxA, INT16 idxB) OLDCALL BANKED;
 
 void vm_actor_get_bounds(SCRIPT_CTX * THIS, INT16 idx) OLDCALL BANKED;
+void vm_actor_get_bounds_pos(SCRIPT_CTX * THIS, INT16 idx) OLDCALL BANKED;
 
 #endif

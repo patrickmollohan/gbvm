@@ -535,3 +535,15 @@ void vm_actor_get_bounds(SCRIPT_CTX * THIS, INT16 idx) OLDCALL BANKED {
     params->TOP = actor->bounds.top;
     params->BOTTOM = actor->bounds.bottom;
 }
+
+void vm_actor_get_bounds_pos(SCRIPT_CTX * THIS, INT16 idx) OLDCALL BANKED {
+    actor_t *actor;
+
+    act_bounds_t * params = VM_REF_TO_PTR(idx);
+    actor = actors + (UBYTE)(params->ID);
+
+    params->LEFT = actor->pos.x + actor->bounds.left;
+    params->RIGHT = actor->pos.x + actor->bounds.right;
+    params->TOP = actor->pos.y + actor->bounds.top;
+    params->BOTTOM = actor->pos.y + actor->bounds.bottom;
+}
